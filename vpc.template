@@ -1,0 +1,1079 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "vpcb2c9f4d7": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "InstanceTenancy": "default",
+        "EnableDnsSupport": "true",
+        "EnableDnsHostnames": "false",
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "production"
+          }
+        ]
+      }
+    },
+    "DataTierZoneB": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.52.0/24",
+        "AvailabilityZone": "us-east-1b",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "Data Tier - zone b"
+          }
+        ]
+      }
+    },
+    "DataTierZoneA": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.51.0/24",
+        "AvailabilityZone": "us-east-1a",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "Data Tier - zone a"
+          }
+        ]
+      }
+    },
+    "PublicDMZ": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/24",
+        "AvailabilityZone": "us-east-1a",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "public DMZ"
+          },
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          }
+        ]
+      }
+    },
+    "AppTierZoneC": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.3.0/24",
+        "AvailabilityZone": "us-east-1c",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "App Tier - zone c"
+          },
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          }
+        ]
+      }
+    },
+    "DataTierZoneC": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.53.0/24",
+        "AvailabilityZone": "us-east-1c",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "Data Tier - zone c"
+          },
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          }
+        ]
+      }
+    },
+    "ELBTierZoneC": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.93.0/24",
+        "AvailabilityZone": "us-east-1c",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "ELB Tier - zone c"
+          }
+        ]
+      }
+    },
+    "AppTierZoneB": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.2.0/24",
+        "AvailabilityZone": "us-east-1b",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "App Tier - zone b"
+          }
+        ]
+      }
+    },
+    "ELBTierZoneA": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.91.0/24",
+        "AvailabilityZone": "us-east-1a",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "ELB Tier - zone a"
+          }
+        ]
+      }
+    },
+    "APPTierZoneA": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.1.0/24",
+        "AvailabilityZone": "us-east-1a",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "App Tier - zone a"
+          }
+        ]
+      }
+    },
+    "ELBTierZoneB": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.92.0/24",
+        "AvailabilityZone": "us-east-1b",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ELB Tier - zone b"
+          },
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          }
+        ]
+      }
+    },
+    "InternetGateway": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "production"
+          }
+        ]
+      }
+    },
+    "DHCPOptions": {
+      "Type": "AWS::EC2::DHCPOptions",
+      "Properties": {
+        "DomainName": "ec2.internal",
+        "DomainNameServers": [
+          "AmazonProvidedDNS"
+        ]
+      }
+    },
+    "networkACL": {
+      "Type": "AWS::EC2::NetworkAcl",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          }
+        ]
+      }
+    },
+    "DataTier": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "Data Tier"
+          }
+        ]
+      }
+    },
+    "ELBTier": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "ELB Tier"
+          }
+        ]
+      }
+    },
+    "AppTier": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "App Tier"
+          }
+        ]
+      }
+    },
+    "PublicRoute": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "Public Route"
+          }
+        ]
+      }
+    },
+    "NAT": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "DisableApiTermination": "false",
+        "InstanceInitiatedShutdownBehavior": "stop",
+        "ImageId": "ami-6e9e4b06",
+        "InstanceType": "t2.medium",
+        "KeyName": "Ops Shared Key",
+        "Monitoring": "false",
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "Bastion + NAT"
+          }
+        ],
+        "NetworkInterfaces": [
+          {
+            "DeleteOnTermination": "true",
+            "Description": "Primary network interface",
+            "DeviceIndex": 0,
+            "SubnetId": {
+              "Ref": "PublicDMZ"
+            },
+            "PrivateIpAddresses": [
+              {
+                "PrivateIpAddress": "10.0.0.87",
+                "Primary": "true"
+              }
+            ],
+            "GroupSet": [
+              {
+                "Ref": "NATSG01"
+              }
+            ],
+            "AssociatePublicIpAddress": "true"
+          }
+        ]
+      }
+    },
+    "proddbsubnetgroup": {
+      "Type": "AWS::RDS::DBSubnetGroup",
+      "Properties": {
+        "DBSubnetGroupDescription": "Production DB Subnet group",
+        "SubnetIds": [
+          {
+            "Ref": "DataTierZoneB"
+          },
+          {
+            "Ref": "DataTierZoneC"
+          },
+          {
+            "Ref": "DataTierZoneA"
+          }
+        ]
+      }
+    },
+    "prodcachesubnetgroup": {
+      "Type": "AWS::ElastiCache::SubnetGroup",
+      "Properties": {
+        "Description": "Prod cache subnet group",
+        "SubnetIds": [
+          {
+            "Ref": "DataTierZoneB"
+          },
+          {
+            "Ref": "DataTierZoneC"
+          },
+          {
+            "Ref": "DataTierZoneA"
+          }
+        ]
+      }
+    },
+    "DATASG01": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Data Tier SG",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "DATA_SG01"
+          }
+        ]
+      }
+    },
+    "APPSG01": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "App Tier SG",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "APP_SG01"
+          }
+        ]
+      }
+    },
+    "ELBSG01": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "ELB Tier SG",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ELB_SG01"
+          },
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          }
+        ]
+      }
+    },
+    "NATSG01": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "NAT SG",
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "Tags": [
+          {
+            "Key": "cloudformation",
+            "Value": "vpc_template"
+          },
+          {
+            "Key": "Name",
+            "Value": "NAT_SG01"
+          }
+        ]
+      }
+    },
+    "acl3": {
+      "Type": "AWS::EC2::NetworkAclEntry",
+      "Properties": {
+        "CidrBlock": "0.0.0.0/0",
+        "Egress": "true",
+        "Protocol": "-1",
+        "RuleAction": "allow",
+        "RuleNumber": "100",
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        }
+      }
+    },
+    "acl4": {
+      "Type": "AWS::EC2::NetworkAclEntry",
+      "Properties": {
+        "CidrBlock": "0.0.0.0/0",
+        "Protocol": "-1",
+        "RuleAction": "allow",
+        "RuleNumber": "100",
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        }
+      }
+    },
+    "subnetacl11": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        },
+        "SubnetId": {
+          "Ref": "DataTierZoneC"
+        }
+      }
+    },
+    "subnetacl12": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        },
+        "SubnetId": {
+          "Ref": "APPTierZoneA"
+        }
+      }
+    },
+    "subnetacl13": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        },
+        "SubnetId": {
+          "Ref": "ELBTierZoneC"
+        }
+      }
+    },
+    "subnetacl14": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        },
+        "SubnetId": {
+          "Ref": "AppTierZoneB"
+        }
+      }
+    },
+    "subnetacl15": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        },
+        "SubnetId": {
+          "Ref": "AppTierZoneC"
+        }
+      }
+    },
+    "subnetacl16": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        },
+        "SubnetId": {
+          "Ref": "PublicDMZ"
+        }
+      }
+    },
+    "subnetacl17": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        },
+        "SubnetId": {
+          "Ref": "ELBTierZoneB"
+        }
+      }
+    },
+    "subnetacl18": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        },
+        "SubnetId": {
+          "Ref": "DataTierZoneB"
+        }
+      }
+    },
+    "subnetacl19": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        },
+        "SubnetId": {
+          "Ref": "ELBTierZoneA"
+        }
+      }
+    },
+    "subnetacl20": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "networkACL"
+        },
+        "SubnetId": {
+          "Ref": "DataTierZoneA"
+        }
+      }
+    },
+    "gw2": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "InternetGatewayId": {
+          "Ref": "InternetGateway"
+        }
+      }
+    },
+    "subnetroute12": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "DataTier"
+        },
+        "SubnetId": {
+          "Ref": "DataTierZoneC"
+        }
+      }
+    },
+    "subnetroute13": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "DataTier"
+        },
+        "SubnetId": {
+          "Ref": "DataTierZoneA"
+        }
+      }
+    },
+    "subnetroute14": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "DataTier"
+        },
+        "SubnetId": {
+          "Ref": "DataTierZoneB"
+        }
+      }
+    },
+    "subnetroute15": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "ELBTier"
+        },
+        "SubnetId": {
+          "Ref": "ELBTierZoneA"
+        }
+      }
+    },
+    "subnetroute16": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "ELBTier"
+        },
+        "SubnetId": {
+          "Ref": "ELBTierZoneB"
+        }
+      }
+    },
+    "subnetroute17": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "ELBTier"
+        },
+        "SubnetId": {
+          "Ref": "ELBTierZoneC"
+        }
+      }
+    },
+    "subnetroute18": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "AppTier"
+        },
+        "SubnetId": {
+          "Ref": "AppTierZoneC"
+        }
+      }
+    },
+    "subnetroute19": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "AppTier"
+        },
+        "SubnetId": {
+          "Ref": "APPTierZoneA"
+        }
+      }
+    },
+    "subnetroute20": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "AppTier"
+        },
+        "SubnetId": {
+          "Ref": "AppTierZoneB"
+        }
+      }
+    },
+    "subnetroute21": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "PublicRoute"
+        },
+        "SubnetId": {
+          "Ref": "PublicDMZ"
+        }
+      }
+    },
+    "route3": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "RouteTableId": {
+          "Ref": "AppTier"
+        },
+        "InstanceId": {
+          "Ref": "NAT"
+        }
+      }
+    },
+    "route4": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "RouteTableId": {
+          "Ref": "PublicRoute"
+        },
+        "GatewayId": {
+          "Ref": "InternetGateway"
+        }
+      },
+      "DependsOn": "gw2"
+    },
+    "dchpassoc2": {
+      "Type": "AWS::EC2::VPCDHCPOptionsAssociation",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpcb2c9f4d7"
+        },
+        "DhcpOptionsId": {
+          "Ref": "DHCPOptions"
+        }
+      }
+    },
+    "ingress9": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DATASG01"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "3306",
+        "ToPort": "3306",
+        "SourceSecurityGroupId": {
+          "Ref": "APPSG01"
+        },
+        "SourceSecurityGroupOwnerId": "055503314251"
+      }
+    },
+    "ingress10": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "APPSG01"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "80",
+        "ToPort": "80",
+        "SourceSecurityGroupId": {
+          "Ref": "ELBSG01"
+        },
+        "SourceSecurityGroupOwnerId": "055503314251"
+      }
+    },
+    "ingress11": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "APPSG01"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "22",
+        "ToPort": "22",
+        "SourceSecurityGroupId": {
+          "Ref": "NATSG01"
+        },
+        "SourceSecurityGroupOwnerId": "055503314251"
+      }
+    },
+    "ingress12": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "NATSG01"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "443",
+        "ToPort": "443",
+        "SourceSecurityGroupId": {
+          "Ref": "APPSG01"
+        },
+        "SourceSecurityGroupOwnerId": "055503314251"
+      }
+    },
+    "ingress13": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "NATSG01"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "80",
+        "ToPort": "80",
+        "SourceSecurityGroupId": {
+          "Ref": "DATASG01"
+        },
+        "SourceSecurityGroupOwnerId": "055503314251"
+      }
+    },
+    "ingress14": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "NATSG01"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "22",
+        "ToPort": "22",
+        "CidrIp": "73.202.51.77/32"
+      }
+    },
+    "ingress15": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "NATSG01"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "443",
+        "ToPort": "443",
+        "SourceSecurityGroupId": {
+          "Ref": "DATASG01"
+        },
+        "SourceSecurityGroupOwnerId": "055503314251"
+      }
+    },
+    "ingress16": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "NATSG01"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "80",
+        "ToPort": "80",
+        "SourceSecurityGroupId": {
+          "Ref": "APPSG01"
+        },
+        "SourceSecurityGroupOwnerId": "055503314251"
+      }
+    },
+    "egress5": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "DATASG01"
+        },
+        "IpProtocol": "-1",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "egress6": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "APPSG01"
+        },
+        "IpProtocol": "-1",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "egress7": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "ELBSG01"
+        },
+        "IpProtocol": "-1",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "egress8": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "NATSG01"
+        },
+        "IpProtocol": "-1",
+        "CidrIp": "0.0.0.0/0"
+      }
+    }
+  },
+  "Description": "",
+  "Outputs": {
+    "vpcb2c9f4d7Id": {
+      "Value": {
+        "Ref": "vpcb2c9f4d7"
+      }
+    },
+    "DataTierZoneBId": {
+      "Value": {
+        "Ref": "DataTierZoneB"
+      }
+    },
+    "DataTierZoneBAvailabilityZone": {
+      "Value": {
+        "Fn::GetAtt": [
+          "DataTierZoneB",
+          "AvailabilityZone"
+        ]
+      }
+    },
+    "DataTierZoneAId": {
+      "Value": {
+        "Ref": "DataTierZoneA"
+      }
+    },
+    "DataTierZoneAAvailabilityZone": {
+      "Value": {
+        "Fn::GetAtt": [
+          "DataTierZoneA",
+          "AvailabilityZone"
+        ]
+      }
+    },
+    "PublicDMZId": {
+      "Value": {
+        "Ref": "PublicDMZ"
+      }
+    },
+    "PublicDMZAvailabilityZone": {
+      "Value": {
+        "Fn::GetAtt": [
+          "PublicDMZ",
+          "AvailabilityZone"
+        ]
+      }
+    },
+    "AppTierZoneCId": {
+      "Value": {
+        "Ref": "AppTierZoneC"
+      }
+    },
+    "AppTierZoneCAvailabilityZone": {
+      "Value": {
+        "Fn::GetAtt": [
+          "AppTierZoneC",
+          "AvailabilityZone"
+        ]
+      }
+    },
+    "DataTierZoneCId": {
+      "Value": {
+        "Ref": "DataTierZoneC"
+      }
+    },
+    "DataTierZoneCAvailabilityZone": {
+      "Value": {
+        "Fn::GetAtt": [
+          "DataTierZoneC",
+          "AvailabilityZone"
+        ]
+      }
+    },
+    "ELBTierZoneCId": {
+      "Value": {
+        "Ref": "ELBTierZoneC"
+      }
+    },
+    "ELBTierZoneCAvailabilityZone": {
+      "Value": {
+        "Fn::GetAtt": [
+          "ELBTierZoneC",
+          "AvailabilityZone"
+        ]
+      }
+    },
+    "AppTierZoneBId": {
+      "Value": {
+        "Ref": "AppTierZoneB"
+      }
+    },
+    "AppTierZoneBAvailabilityZone": {
+      "Value": {
+        "Fn::GetAtt": [
+          "AppTierZoneB",
+          "AvailabilityZone"
+        ]
+      }
+    },
+    "ELBTierZoneAId": {
+      "Value": {
+        "Ref": "ELBTierZoneA"
+      }
+    },
+    "ELBTierZoneAAvailabilityZone": {
+      "Value": {
+        "Fn::GetAtt": [
+          "ELBTierZoneA",
+          "AvailabilityZone"
+        ]
+      }
+    },
+    "APPTierZoneAId": {
+      "Value": {
+        "Ref": "APPTierZoneA"
+      }
+    },
+    "APPTierZoneAAvailabilityZone": {
+      "Value": {
+        "Fn::GetAtt": [
+          "APPTierZoneA",
+          "AvailabilityZone"
+        ]
+      }
+    },
+    "ELBTierZoneBId": {
+      "Value": {
+        "Ref": "ELBTierZoneB"
+      }
+    },
+    "ELBTierZoneBAvailabilityZone": {
+      "Value": {
+        "Fn::GetAtt": [
+          "ELBTierZoneB",
+          "AvailabilityZone"
+        ]
+      }
+    },
+    "networkACLId": {
+      "Value": {
+        "Ref": "networkACL"
+      }
+    }
+  }
+}
